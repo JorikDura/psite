@@ -16,28 +16,32 @@
 <form class="forma1" action="index.php" method="get" autocomplete="off">
     <label for="fstr">Введтие строку:</label><br>
     <input type="text" id="fstr" name="fstr" placeholder="Введите что-нибудь..." required>
-    <input type="submit" value="Отправить" onclick="h2hider()">
+    <input type="submit" value="Отправить">
 </form>
 </div>
 
 
 <div class="otvet">
     <h2>Ответ:</h2>
-
-
+    <p>
 <?php
-$str = $_GET['fstr'];
-if (isset($str)) { //если есть какое то значение то выполняем
+/*var_dump($_GET);*/
+/*$test = "TEST";
+mb_strlen($test);*/
+error_reporting(E_ALL);
+/*phpinfo();*/
+/*$str = isset($_GET["fstr"]);/* ? $_GET["fstr"] : "";*/
+/*$str = htmlspecialchars($_GET["fstr"]);*/
+if(isset($_GET["fstr"])) {
+    $str = $_GET["fstr"];
     echo "Вы ввели: " . $str . "<br>";
-   /* foreach ((explode(" ", $str)) as $i => $value) { //использую функцию explode(разделительный символ, строка) - превращает строку в массив
-        echo $i  . "-" . $value . ", Длина: " . strlen($value) . "<br>";
-    }*/
     echo "Количество символов: " . mb_strlen($str) . "<br>"; //возвращает длину строки
-/*    $converted = mb_convert_encoding($str, 'Windows-1251', mb_detect_encoding($str));
-    echo mb_strlen($converted) . "<br>";
-    echo mb_detect_encoding($converted);*/
+    /*    $converted = mb_convert_encoding($str, 'Windows-1251', mb_detect_encoding($str));
+        echo mb_strlen($converted) . "<br>";
+        echo mb_detect_encoding($converted);*/
 }
 ?>
+    </p>
 </div>
 
 </body>
