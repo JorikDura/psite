@@ -1,0 +1,56 @@
+body {
+    font-family: Garamond, serif;
+    background-color: lightgray;
+}
+h1 {
+    font-family: Helvetica, sans-serif;
+    text-align: center;
+}
+h2 {
+    text-align: center;
+}
+.getForm {
+    background-color: gray;
+    color: white;
+}
+.timeForm {
+    background-color: darkgray;
+}
+input[type=text] {
+    width: 250px;
+    border: solid 2px gray;
+    border-radius: 4px;
+    outline: none;
+    padding: 12px 20px;
+    transition: width 0.4s ease-in-out;
+}
+input[type=text]:focus {
+    width: 70%;
+    background-color: lightgoldenrodyellow;
+}
+input[type=date] {
+    width: 250px;
+    border: solid 2px gray;
+    border-radius: 4px;
+    outline: none;
+    padding: 12px 20px;
+}
+input[type=date]:focus {
+    background-color: lightgoldenrodyellow;
+}
+* {
+    box-sizing: border-box;
+}
+
+.box {
+    float: left;
+    width: 50%;
+    padding: 20px;
+    height: 200px;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
