@@ -33,9 +33,8 @@
             echo "Вы ввели: " . $str . "<br>";
             //возвращает длину строки
             echo "Количество символов: " . mb_strlen($str) . "<br>";
-            $times = new FormClass($_GET["time"]);
             /* Вызов метода класса для вывода времени. */
-            $times->getTime();
+            FormClass::getTime($_GET["time"]);
         }
         ?>
     </div>
