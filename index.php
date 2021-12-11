@@ -6,19 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keyword" content="php">
     <meta name="description" content="AwA">
-    <title>nst php ver 0.43257</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>nst php ver 0.78463</title>
+    <link rel="stylesheet" href="fstyles.css">
 </head>
 <body>
 
 <h1>Формы</h1>
 <div class="clearfix">
     <div class="box getForm">
-    <form action="index.php" method="get" autocomplete="off" id="formaChka">
-    <label for="fstr">Введите строку:</label><br>
+    <form action="index.php" method="get" autocomplete="off">
+    <label for="fstr">Введите имя:</label><br>
     <input type="text" id="fstr" name="fstr" placeholder="Введите что-нибудь..."><br>
     <label for="time">Введите дату: </label><br>
-    <input type="date" id="time" name="time" placeholder="Ваша дата...">
+    <input type="date" id="time" name="time" placeholder="Ваша дата..."><br>
     <input disabled type="submit" value="Отправить" id="button">
     </form>
     </div>
@@ -39,6 +39,7 @@
         ?>
     </div>
 </div>
+
 <!-- Подключаем java скрипты -->
 <script src="script.js"></script>
 </body>

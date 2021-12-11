@@ -38,6 +38,21 @@ input[type=date] {
 input[type=date]:focus {
     background-color: lightgoldenrodyellow;
 }
+input[type=submit] {
+    border: none;
+    height: 35px;
+    width: 20%;
+    border-radius: 5px;
+    margin-top: 7px;
+    background-color: green;
+    color: white;
+}
+input[type=submit]:disabled {
+    background-color: dimgray;
+}
+input[type=submit]:focus {
+    background-color: limegreen;
+}
 * {
     box-sizing: border-box;
 }

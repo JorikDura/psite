@@ -1,19 +1,17 @@
-/* НАДО ОБНОВИТЬ */
-function lenText() {
-    /* Проверка на длину текста в поле*/
-    if (text.value.length >= 1 && date.value.length >= 1) {
-        /* Убираем атрибут */
-        button.removeAttribute('disabled')
+const text = document.querySelectorAll('input');
+button = text[2];
+text[0].addEventListener("change", myButton);
+text[1].addEventListener("change", myButton);
+/*console.log(text);*/
+
+function myButton()
+{
+    if(text[0].value != "" && text[1].value != "")
+    {
+        button.disabled = false;
     }
     else
-        /* Ставим атрибут */
-        button.setAttribute('disabled', '')
+    {
+        button.disabled = true;
+    }
 }
-/* querySelector - позволяет взаимодействовать с тегами, получать значение или передавать */
-/* присвоим первое значение  */
-let text = document.querySelector('#fstr')
-/* наша кнопка */
-let date = document.querySelector('#time')
-let button = document.querySelector('#button')
-/* новый ивент */
-text.addEventListener('keyup', lenText)
