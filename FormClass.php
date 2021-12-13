@@ -20,6 +20,6 @@ class FormClass
         );
         $month = date('m',strtotime($time));
         $time=strtotime($time);
-        echo date('d ', $time) . $monthsArray[$month] . date(' Y', $time);
+        echo date('d ', $time) . $monthsArray[$month] . date(' Y', $time) . "<br>";
     }
 }

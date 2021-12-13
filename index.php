@@ -1,3 +1,7 @@
+<?php
+include 'StringClass.php';
+include 'FormClass.php';
+?>
 <!DOCTYPE html>
 <html lang="ru-RU">
 <head>
@@ -7,7 +11,7 @@
     <meta name="keyword" content="php">
     <meta name="description" content="AwA">
     <title>nst php ver 0.78463</title>
-    <link rel="stylesheet" href="fstyles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -16,32 +20,36 @@
     <div class="box getForm">
     <form action="index.php" method="get" autocomplete="off">
     <label for="fstr">Введите имя:</label><br>
-    <input type="text" id="fstr" name="fstr" placeholder="Введите что-нибудь..."><br>
-    <label for="time">Введите дату: </label><br>
+    <input type="text" id="fstr" name="fstr" placeholder="Введите имя..."><br>
+    <label for="nstr">Введите фамилию:</label><br>
+    <input type="text" id="nstr" name="nstr" placeholder="Введите фамилию..."><br>
+    <label for="time">Введите дату рождения: </label><br>
     <input type="date" id="time" name="time" placeholder="Ваша дата..."><br>
     <input disabled type="submit" value="Отправить" id="button">
     </form>
     </div>
     <div class="box timeForm">
         <?php
-        include ('FormClass.php');
         error_reporting(E_ALL);
         /*phpinfo();*/
-        if(isset($_GET["time"]) && isset($_GET["fstr"])) {
+        if(isset($_GET["time"]) && isset($_GET["fstr"]) && isset($_GET["nstr"])) {
             echo "<h2>Ответ: </h2>";
-            $str = htmlspecialchars($_GET["fstr"]);
-            echo "Вы ввели: " . $str . "<br>";
-            //возвращает длину строки
-            echo "Количество символов: " . mb_strlen($str) . "<br>";
-            /* Вызов метода класса для вывода времени. */
+            $strClass = new StringClass($_GET["fstr"]);
+            $strClass->printStr();
+            echo "Длинна строки: " . $strClass->strLength() . "<br>";
+            
+            $strClass->addStr($_GET["nstr"]);
+            echo "Объединим имя и фамилию: " . $strClass->getText();
+            echo "Дата рождения: ";
             FormClass::getTime($_GET["time"]);
+            $strClass->clearStr();
         }
         ?>
     </div>
 </div>
 
 <!-- Подключаем java скрипты -->
-<script src="script.js"></script>
+<script src="script1.js"></script>
 </body>
 </html
 
