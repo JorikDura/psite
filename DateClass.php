@@ -1,7 +1,11 @@
 <?php
 
-class FormClass
+class DateClass
 {
+    /**
+     * @param $time
+     */
+
     public static function getTime($time)
     {
         $monthsArray = array(

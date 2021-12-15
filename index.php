@@ -1,6 +1,6 @@
 <?php
 include 'StringClass.php';
-include 'FormClass.php';
+include 'DateClass.php';
 ?>
 <!DOCTYPE html>
 <html lang="ru-RU">
@@ -10,7 +10,7 @@ include 'FormClass.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keyword" content="php">
     <meta name="description" content="AwA">
-    <title>nst php ver 0.78463</title>
+    <title>nst php ver 0.87463</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -37,11 +37,10 @@ include 'FormClass.php';
             $strClass = new StringClass($_GET["fstr"]);
             $strClass->printStr();
             echo "Длинна строки: " . $strClass->strLength() . "<br>";
-            
             $strClass->addStr($_GET["nstr"]);
-            echo "Объединим имя и фамилию: " . $strClass->getText();
+            echo "Объединим имя и фамилию: " . $strClass->getText() . "<br>";
             echo "Дата рождения: ";
-            FormClass::getTime($_GET["time"]);
+            DateClass::getTime($_GET["time"]);
             $strClass->clearStr();
         }
         ?>

@@ -4,7 +4,11 @@ class StringClass
 {
     private $text;
 
-    public function __construct($text)
+    /**
+     * @param string $text
+     */
+
+    public function __construct(string $text)
     {
         $this->text = $text;
     }
@@ -12,16 +16,16 @@ class StringClass
     {
         return mb_strlen($this->text);
     }
-    public function addStr($newText)
+    public function addStr(string $newText)
     {
-        $this->text = $this->text . " " . $newText . "<br>";
+        $this->text .= $newText;
     }
     public function clearStr()
     {
         $this->text = "";
         echo "Строка была очищена." . "<br>";
     }
-    public function rewriteStr($newText)
+    public function rewriteStr(string $newText)
     {
         $this->text = $newText;
     }
