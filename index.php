@@ -1,6 +1,8 @@
 <?php
 include 'StringClass.php';
 include 'DateClass.php';
+require_once 'db/connection.php';
+require_once 'db/DateBaseFunctions.php';
 ?>
 <!DOCTYPE html>
 <html lang="ru-RU">
@@ -10,14 +12,18 @@ include 'DateClass.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keyword" content="php">
     <meta name="description" content="AwA">
-    <title>nst php ver 0.87463</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>nst php ver 0.89564</title>
+    <link rel="stylesheet" href="styles1.css">
 </head>
 <body>
 
-<h1>Формы</h1>
+<ul class="sidenav">
+    <li><a href="index.php">Формы</a></li>
+    <li><a href="news.php">Новости</a></li>
+    <li style="float: right;"><a href="#about">About</a></li>
+</ul>
 <div class="clearfix">
-    <div class="box getForm">
+    <div class="box">
     <form action="index.php" method="get" autocomplete="off">
     <label for="fstr">Введите имя:</label><br>
     <input type="text" id="fstr" name="fstr" placeholder="Введите имя..."><br>
@@ -28,20 +34,30 @@ include 'DateClass.php';
     <input disabled type="submit" value="Отправить" id="button">
     </form>
     </div>
-    <div class="box timeForm">
+    <div class="box">
         <?php
         error_reporting(E_ALL);
         /*phpinfo();*/
         if(isset($_GET["time"]) && isset($_GET["fstr"]) && isset($_GET["nstr"])) {
-            echo "<h2>Ответ: </h2>";
-            $strClass = new StringClass($_GET["fstr"]);
-            $strClass->printStr();
-            echo "Длинна строки: " . $strClass->strLength() . "<br>";
-            $strClass->addStr($_GET["nstr"]);
-            echo "Объединим имя и фамилию: " . $strClass->getText() . "<br>";
-            echo "Дата рождения: ";
-            DateClass::getTime($_GET["time"]);
-            $strClass->clearStr();
+            $time = htmlspecialchars($_GET["time"]);
+            $str1 = htmlspecialchars($_GET["fstr"]);
+            $str2 = htmlspecialchars($_GET["nstr"]);
+            if($time != "" && $str1 != "" && $str1 != "")
+            {
+                echo "<h2>Ответ: </h2>";
+                $strClass = new StringClass($str1);
+                $strClass->printStr();
+                echo "Длинна строки: " . $strClass->strLength() . "<br>";
+                $strClass->addStr($str2);
+                echo "Объединим имя и фамилию: " . $strClass->getText() . "<br>";
+                echo "Дата рождения: ";
+                DateClass::getData($time);
+                $strClass->clearStr();
+            }
+            else
+            {
+                echo "Не знаю как так вышло, но вы ничего не ввели!";
+            }
         }
         ?>
     </div>

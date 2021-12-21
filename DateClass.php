@@ -3,10 +3,10 @@
 class DateClass
 {
     /**
-     * @param $time
+     * @param $data
      */
 
-    public static function getTime($time)
+    public static function getData($data)
     {
         $monthsArray = array(
             "01" => "января",
@@ -22,8 +22,8 @@ class DateClass
             "11" => "ноября",
             "12" => "декабря"
         );
-        $month = date('m',strtotime($time));
-        $time=strtotime($time);
-        echo date('d ', $time) . $monthsArray[$month] . date(' Y', $time) . "<br>";
+        $month = date('m',strtotime($data));
+        $data=strtotime($data);
+        echo date('d ', $data) . $monthsArray[$month] . date(' Y', $data) . "<br>";
     }
 }

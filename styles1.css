@@ -1,6 +1,9 @@
+html, body {
+    height: 100%;
+  }
 body {
     font-family: Garamond, serif;
-    background-color: lightgray;
+    background: linear-gradient(to top left, powderblue, pink) no-repeat;
 }
 h1 {
     font-family: Helvetica, sans-serif;
@@ -9,13 +12,8 @@ h1 {
 h2 {
     text-align: center;
 }
-.getForm {
-    background-color: gray;
-    color: white;
-}
-.timeForm {
-    background-color: darkgray;
-}
+
+
 input[type=text] {
     width: 250px;
     border: solid 2px gray;
@@ -44,14 +42,14 @@ input[type=submit] {
     width: 20%;
     border-radius: 5px;
     margin-top: 7px;
-    background-color: green;
-    color: white;
+    background-color: rgb(176, 224, 230, 0.8);
+    color: black;
 }
 input[type=submit]:disabled {
     background-color: dimgray;
 }
 input[type=submit]:focus {
-    background-color: limegreen;
+    background-color: rgb(176, 224, 230);
 }
 * {
     box-sizing: border-box;
@@ -68,4 +66,34 @@ input[type=submit]:focus {
     content: "";
     clear: both;
     display: table;
+}
+ul.sidenav {
+    list-style-type: none;
+    background-color: rgb(68,79,90);
+    margin: 0;
+    padding: 0;
+    top: 0;
+    overflow: hidden;
+    position: -webkit-sticky;
+    position: sticky;
+    width: 100%;
+    z-index: 4;
+}
+
+ul.sidenav li a
+{
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+ul.sidenav li
+{
+    float: left;
+}  
+ul.sidenav li a:hover {
+    background: linear-gradient(to top left, pink, powderblue);
+    color:black;
 }
