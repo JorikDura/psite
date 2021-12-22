@@ -13,7 +13,6 @@ h2 {
     text-align: center;
 }
 
-
 input[type=text] {
     width: 250px;
     border: solid 2px gray;
@@ -24,7 +23,7 @@ input[type=text] {
 }
 input[type=text]:focus {
     width: 70%;
-    background-color: lightgoldenrodyellow;
+    background-color: rgb(250, 209, 231);
 }
 input[type=date] {
     width: 250px;
@@ -34,7 +33,7 @@ input[type=date] {
     padding: 12px 20px;
 }
 input[type=date]:focus {
-    background-color: lightgoldenrodyellow;
+    background-color: rgb(250, 209, 231);
 }
 input[type=submit] {
     border: none;
@@ -49,7 +48,7 @@ input[type=submit]:disabled {
     background-color: dimgray;
 }
 input[type=submit]:focus {
-    background-color: rgb(176, 224, 230);
+    background-color: rgb(141, 230, 241);
 }
 * {
     box-sizing: border-box;
@@ -96,4 +95,20 @@ ul.sidenav li
 ul.sidenav li a:hover {
     background: linear-gradient(to top left, pink, powderblue);
     color:black;
+}
+.databaselist {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    overflow: hidden;
+    font-size: 1.5em;
+}
+.databaselist h3 {
+    font-family: Helvetica, sans-serif;
+    font-size: 1em;
+    color: rgb(68,79,90);
+}
+.databaselist h3:hover {
+    color: rgb(240, 132, 173);
 }

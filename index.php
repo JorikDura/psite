@@ -13,10 +13,10 @@ require_once 'db/DateBaseFunctions.php';
     <meta name="keyword" content="php">
     <meta name="description" content="AwA">
     <title>nst php ver 0.89564</title>
-    <link rel="stylesheet" href="styles1.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
+<!-- Меню -->
 <ul class="sidenav">
     <li><a href="index.php">Формы</a></li>
     <li><a href="news.php">Новости</a></li>
@@ -64,7 +64,7 @@ require_once 'db/DateBaseFunctions.php';
 </div>
 
 <!-- Подключаем java скрипты -->
-<script src="script1.js"></script>
+<script src="script.js"></script>
 </body>
 </html
 

@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc73c929-019f-4511-b50a-e1751b8f104f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/DateClass.php" beforeDir="false" afterPath="$PROJECT_DIR$/DateClass.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/DateBaseFunctions.php" beforeDir="false" afterPath="$PROJECT_DIR$/db/DateBaseFunctions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/connection.php" beforeDir="false" afterPath="$PROJECT_DIR$/db/connection.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/news.php" beforeDir="false" afterPath="$PROJECT_DIR$/news.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles1.css" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +61,7 @@
       <workItem from="1639570120636" duration="8000" />
       <workItem from="1639685867124" duration="1268000" />
       <workItem from="1640091900265" duration="100000" />
+      <workItem from="1640178490047" duration="6018000" />
     </task>
     <servers />
   </component>
