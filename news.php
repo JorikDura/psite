@@ -72,8 +72,8 @@ if(isset($_GET["_title"]) && isset($_GET["_text"]) && isset($_GET["_date"])) {
         VALUES (NULL, '{$str2}', '{$str1}', '{$date}')");
         //header - меняет HTTP-заголовок.
         //использовал чтобы обновить страницу, 
-        //а так же не заносить те же данные 2 раза
-        header('Location: http://nst/news.php');
+        //а так же не заносить те же данные много раз
+        header('Refresh:0; url=news.php');
     }
 }
 ?>
