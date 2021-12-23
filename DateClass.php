@@ -23,7 +23,7 @@ class DateClass
             "12" => "декабря"
         );
         $month = date('m',strtotime($date));
-        $date=strtotime($date);
+        $date = strtotime($date);
         echo date('d ', $date) . $monthsArray[$month] . date(' Y', $date) . "<br>";
     }
 }
