@@ -51,7 +51,7 @@ require_once 'db/DateBaseFunctions.php';
                 $strClass->addStr($str2);
                 echo "Объединим имя и фамилию: " . $strClass->getText() . "<br>";
                 echo "Дата рождения: ";
-                DateClass::getData($time);
+                DateClass::getDate($time);
                 $strClass->clearStr();
             }
             else
