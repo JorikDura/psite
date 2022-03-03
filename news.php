@@ -1,7 +1,7 @@
 <?php
+
 include 'StringClass.php';
 include 'DateClass.php';
-require_once 'db/connection.php';
 require_once 'db/DateBaseFunctions.php';
 ?>
 <!DOCTYPE html>
@@ -25,59 +25,74 @@ require_once 'db/DateBaseFunctions.php';
 
 <div class="clearfix">
     <div class="box">
-    <h2>Новости</h2>
-    <ul class="databaselist">
-    <?php
-    //вывод базы данных
-    $listOfNews = getNewsByDate($link);
-    if($listOfNews == NULL)
-    {
-        echo "Тут пока что пусто";
-    }
-    foreach($listOfNews as $news) : ?>
-    <li>
-    <h3><?=$news["_title"]?></h3>
-    <?=$news["_text"]?><br>
-    <p>Дата публикации: <?=$news["_date"]?></p>
-    </li>
-    <?php endforeach; ?>
-    </ul>
+        <h2>Новости</h2>
+        <ul class="databaselist">
+            <?php
+            $page = 1;
+
+            if (isset($_GET["page"])) {
+                $page = (int)$_GET["page"];
+
+                if ($page < 1) {
+                    $page = 1;
+                }
+            }
+            //вывод базы данных
+            $DB = new SQLFunctions();
+            $listOfNews = $DB->getNewsByDate($page);
+
+            if($listOfNews == null)
+            {
+                echo "Тут пока что пусто";
+            }
+
+            foreach($listOfNews as $news) : ?>
+                <li>
+                    <h3><?=$news["_title"]?></h3>
+                    <?=$news["_text"]?><br>
+                    <p>Дата публикации: <?=$news["_date"]?></p>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+        <a class="pageStyle", href="news.php?page=<?= $page - 1 ?>"> Назад </a>
+        <span><?= $page ?></span>
+        <a class="pageStyle", href="news.php?page=<?= $page + 1 ?>"> Вперед </a>
     </div>
     <!-- форма для ввода данных -->
     <div class="box">
-    <h2>Создать новость</h2>
-    <form action="news.php" method="get" autocomplete="off">
-    <label for="_title">Введите заголовок:</label><br>
-    <input type="text" id="_title" name="_title" placeholder="Введите заголовок..."><br>
-    <label for="nstr">Введите текст:</label><br>
-    <input type="text" id="_text" name="_text" placeholder="Введите текст..."><br>
-    <label for="time">Введите дату новости: </label><br>
-    <input type="date" id="_date" name="_date" placeholder="Ваша дата..."><br>
-    <input disabled type="submit" value="Отправить">
-    </form>
-</div>
-<br>
+        <h2>Создать новость</h2>
+        <form action="news.php" method="get" autocomplete="off">
+            <label for="_title">Введите заголовок:</label><br>
+            <input type="text" id="_title" name="_title" placeholder="Введите заголовок..."><br>
+            <label for="nstr">Введите текст:</label><br>
+            <input type="text" id="_text" name="_text" placeholder="Введите текст..."><br>
+            <label for="time">Введите дату новости: </label><br>
+            <input type="date" id="_date" name="_date" placeholder="Ваша дата..."><br>
+            <input disabled type="submit" value="Отправить">
+        </form>
+    </div>
+    <br>
 
-<?php
-error_reporting(E_ALL);
-if(isset($_GET["_title"]) && isset($_GET["_text"]) && isset($_GET["_date"])) {
-    $date = htmlspecialchars($_GET["_date"]);
-    $str1 = htmlspecialchars($_GET["_text"]);
-    $str2 = htmlspecialchars($_GET["_title"]);
-    if($date != "" && $str1 != "" && $str2 != "")
-    {
-        //id ставится автоматически(AUTO_INCREMENT)
-        $sqlPath = mysqli_query($link, 
-        "INSERT INTO `news` (`id`, `_title`, `_text`, `_date`) 
-        VALUES (NULL, '{$str2}', '{$str1}', '{$date}')");
-        //header - меняет HTTP-заголовок.
-        //использовал чтобы обновить страницу, 
-        //а так же не заносить те же данные много раз
-        header('Refresh:0; url=news.php');
+    <?php
+    error_reporting(E_ALL);
+
+    if (isset($_GET["_title"]) && isset($_GET["_text"]) && isset($_GET["_date"])) {
+
+        $date = htmlspecialchars($_GET["_date"]);
+        $str1 = htmlspecialchars($_GET["_text"]);
+        $str2 = htmlspecialchars($_GET["_title"]);
+
+        if ($date != "" && $str1 != "" && $str2 != "") {
+            //id ставится автоматически(AUTO_INCREMENT)
+            $DB->insertDataToDB($str1, $str2, $date);
+            //header - меняет HTTP-заголовок.
+            //использовал чтобы обновить страницу,
+            //а так же не заносить те же данные много раз
+            header('Refresh:0; url=news.php');
+        }
     }
-}
-?>
-<!-- Подключаем java скрипты -->
-<script src="script.js"></script>
+    ?>
+    <!-- Подключаем java скрипты -->
+    <script src="script.js"></script>
 </body>
 </html

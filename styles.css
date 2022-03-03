@@ -112,3 +112,15 @@ ul.sidenav li a:hover {
 .databaselist h3:hover {
     color: rgb(240, 132, 173);
 }
+.pageStyle {
+    padding: 0.7em;
+    font-family: Helvetica, sans-serif;
+    text-decoration: none;
+    color: rgb(68,79,90);
+}
+.pageStyle span {
+    font-family: Garamond, serif;
+}
+.pageStyle:hover {
+    color:rgb(240, 132, 173);
+}

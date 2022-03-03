@@ -1,7 +1,6 @@
 <?php
 include 'StringClass.php';
 include 'DateClass.php';
-require_once 'db/connection.php';
 require_once 'db/DateBaseFunctions.php';
 ?>
 <!DOCTYPE html>
@@ -38,10 +37,12 @@ require_once 'db/DateBaseFunctions.php';
         <?php
         error_reporting(E_ALL);
         /*phpinfo();*/
+
         if(isset($_GET["time"]) && isset($_GET["fstr"]) && isset($_GET["nstr"])) {
             $time = htmlspecialchars($_GET["time"]);
             $str1 = htmlspecialchars($_GET["fstr"]);
             $str2 = htmlspecialchars($_GET["nstr"]);
+
             if($time != "" && $str1 != "" && $str1 != "")
             {
                 echo "<h2>Ответ: </h2>";
@@ -54,6 +55,7 @@ require_once 'db/DateBaseFunctions.php';
                 DateClass::getDate($time);
                 $strClass->clearStr();
             }
+
             else
             {
                 echo "Не знаю как так вышло, но вы ничего не ввели!";
