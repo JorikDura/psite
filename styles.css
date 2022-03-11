@@ -124,3 +124,6 @@ ul.sidenav li a:hover {
 .pageStyle:hover {
     color:rgb(240, 132, 173);
 }
+.langField {
+    width: 15.4em;
+}

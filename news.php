@@ -1,11 +1,9 @@
 <?php
-
-include 'StringClass.php';
-include 'DateClass.php';
-require_once 'db/DateBaseFunctions.php';
+/*spl_autoload_register();*/
+require_once 'Core/DateBaseSql/DateBaseFunctions.php';
 ?>
 <!DOCTYPE html>
-<html lang="ru-RU">
+<html lang="ru-RU" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,8 +16,8 @@ require_once 'db/DateBaseFunctions.php';
 <body>
 <!-- Меню -->
 <ul class="sidenav">
-    <li><a href="index.php">Формы</a></li>
-    <li><a href="news.php">Новости</a></li>
+    <li><a href="\">Формы</a></li>
+    <li><a href="news">Новости</a></li>
     <li style="float: right;"><a href="#about">About</a></li>
 </ul>
 
@@ -30,38 +28,72 @@ require_once 'db/DateBaseFunctions.php';
             <?php
             $page = 1;
 
-            if (isset($_GET["page"])) {
-                $page = (int)$_GET["page"];
+            if (isset($_POST["page"])) {
+                $page = (int)$_POST["page"];
 
                 if ($page < 1) {
                     $page = 1;
                 }
-            }
-            //вывод базы данных
-            $DB = new SQLFunctions();
-            $listOfNews = $DB->getNewsByDate($page);
 
-            if($listOfNews == null)
+            }
+
+            $lang = 1;
+
+            if(isset($_COOKIE["kuki"]))
             {
+
+                if($_COOKIE["kuki"] == "2")
+                {
+                    $lang = 2;
+                }
+
+            }
+
+            if(isset($_POST["language"]))
+            {
+
+                if($_POST["language"] == "Русский")
+                {
+                    $lang = 1;
+                }
+
+                if($_POST["language"] == "Не русский")
+                {
+                    $lang = 2;
+                }
+
+            }
+
+            setcookie("kuki", $lang);
+
+            //вывод базы данных
+            $DB = new DateBaseFunctions();
+            $listOfNews = $DB->getNewsByDate($page, $lang);
+
+            if ($listOfNews == null) {
                 echo "Тут пока что пусто";
             }
 
-            foreach($listOfNews as $news) : ?>
+            foreach ($listOfNews as $news) : ?>
                 <li>
-                    <h3><?=$news["_title"]?></h3>
-                    <?=$news["_text"]?><br>
-                    <p>Дата публикации: <?=$news["_date"]?></p>
+                    <h3><?= $news["title"] ?></h3>
+                    <?= $news["content"] ?><br>
+                    <p>Дата публикации: <?= $news["date"] ?></p>
                 </li>
-            <?php endforeach; ?>
+            <?php
+            endforeach; ?>
         </ul>
-        <a class="pageStyle", href="news.php?page=<?= $page - 1 ?>"> Назад </a>
-        <span><?= $page ?></span>
-        <a class="pageStyle", href="news.php?page=<?= $page + 1 ?>"> Вперед </a>
+        <!-- форма для страниц -->
+        <form action="" method="post" target="_self">
+            <input type="submit" value="<?= $page - 1 ?>" name="page">
+            <span> <?= $page ?></span>
+            <input type="submit" value="<?= $page + 1 ?>" name="page">
+        </form>
     </div>
     <!-- форма для ввода данных -->
     <div class="box">
         <h2>Создать новость</h2>
-        <form action="news.php" method="get" autocomplete="off">
+        <form action="" method="post" autocomplete="off">
             <label for="_title">Введите заголовок:</label><br>
             <input type="text" id="_title" name="_title" placeholder="Введите заголовок..."><br>
             <label for="nstr">Введите текст:</label><br>
@@ -70,29 +102,30 @@ require_once 'db/DateBaseFunctions.php';
             <input type="date" id="_date" name="_date" placeholder="Ваша дата..."><br>
             <input disabled type="submit" value="Отправить">
         </form>
+        <!-- форма для языка -->
+        <h2>Выбрать язык</h2>
+        <form action="" method="post" target="_self">
+            <input type="submit" value="Русский" name="language">
+            <input type="submit" value="Не русский" name="language">
+        </form>
     </div>
     <br>
 
     <?php
     error_reporting(E_ALL);
 
-    if (isset($_GET["_title"]) && isset($_GET["_text"]) && isset($_GET["_date"])) {
-
-        $date = htmlspecialchars($_GET["_date"]);
-        $str1 = htmlspecialchars($_GET["_text"]);
-        $str2 = htmlspecialchars($_GET["_title"]);
+    if (isset($_POST["_title"]) && isset($_POST["_text"]) && isset($_POST["_date"])) {
+        $date = htmlspecialchars($_POST["_date"]);
+        $str1 = htmlspecialchars($_POST["_text"]);
+        $str2 = htmlspecialchars($_POST["_title"]);
 
         if ($date != "" && $str1 != "" && $str2 != "") {
-            //id ставится автоматически(AUTO_INCREMENT)
-            $DB->insertDataToDB($str1, $str2, $date);
-            //header - меняет HTTP-заголовок.
-            //использовал чтобы обновить страницу,
-            //а так же не заносить те же данные много раз
+            $DB->insertDataToDB($str2, $str1, $date, $_COOKIE["kuki"]);
             header('Refresh:0; url=news.php');
         }
     }
     ?>
-    <!-- Подключаем java скрипты -->
+    <!-- подключаем java скрипты -->
     <script src="script.js"></script>
 </body>
 </html
