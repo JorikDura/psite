@@ -1,6 +1,9 @@
 <?php
 /*spl_autoload_register();*/
-require_once 'Core/DateBaseSql/DateBaseFunctions.php';
+
+use Core\DateString\DateBaseFunctions;
+
+require_once 'Core/Classes/DateBaseFunctions.php';
 ?>
 <!DOCTYPE html>
 <html lang="ru-RU" xmlns="http://www.w3.org/1999/html">
