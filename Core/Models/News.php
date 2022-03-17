@@ -11,14 +11,32 @@ require "Core/Classes/Model.php";
 class News extends Model
 {
 
-    protected $table = 'news';
+    protected $table = 'news_translate';
 
-    function __construct()
+    protected $innerTable = "news";
+
+    protected $newsID = "news.id";
+
+    protected $newsTransID = "news_translate.id";
+
+    protected $newsTransLangID = "news_translate.language_id";
+
+    protected $langID;
+
+/*    function __construct($innerTable, $newsID, $newsTransID, $newsTransLangID, $langID)
     {
+        $this->innerTable = $innerTable;
 
-    }
+        $this->newsID = $newsID;
 
-    function selectNews($innerTable, $newsID, $newsTransID, $newsTransLangID, $langID)
+        $this->newsTransID = $newsTransID;
+
+        $this->newsTransLangID = $newsTransLangID;
+
+        $this->langID = $langID;
+    }*/
+
+    function selectNews($langID)
     {
         $query = $this->select(
             $this->table,
@@ -27,7 +45,52 @@ class News extends Model
             "news_translate.content",
             "news_translate.language_id"
         );
-        $query = $query . "INNER JOIN {$innerTable} ON {$newsID} = {$newsTransID} WHERE {$newsTransLangID} = {$langID};";
-        $this->$query = $query;
+        $query = $query . " INNER JOIN {$this->innerTable} ON {$this->newsID} = {$this->newsTransID} WHERE {$this->newsTransLangID} = {$langID}";
+
+        $this->query = $query;
+    }
+
+    function  insertDataToNews($str1, $str2, $date, int $locale)
+    {
+        $query = $this->insertDataToDB($this->table, "news", "date");
+
+        $this->query = $query . "VALUES ('{$date}');";
+
+        $this->run();
+
+        $this->clear();
+
+        $count = $this->connection->query("SELECT MAX(id) as id FROM news");
+        $newsID = 0;
+
+        if ($count->num_rows > 0) {
+            $count = $count->fetch_assoc();
+            $newsID = $count["id"];
+        }
+
+        $query = $this->insertDataToDB($this->table, "news_translate", "news_id", "title", "content", "language_id");
+
+        $this->query = $query . "VALUES ('{$newsID}', '{$str1}', '{$str2}', '{$locale}');";
+
+        $this->run();
+    }
+
+    function getNewsByDate(int $page = 1, int $locale): array
+    {
+        $pageSet = ($page - 1) * 4;
+
+        $this->selectNews($locale);
+
+        $this->query .= " ORDER BY `date` ASC LIMIT 4 OFFSET $pageSet;";
+
+        var_dump($this->query);
+
+        $sqlReady = $this->runAssoc();
+
+        /*var_dump($sqlReady);*/
+
+        $this->clear();
+
+        return $sqlReady;
     }
 }

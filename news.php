@@ -1,9 +1,7 @@
 <?php
 /*spl_autoload_register();*/
 
-use Core\DateString\DateBaseFunctions;
-
-require_once 'Core/Classes/DateBaseFunctions.php';
+require_once 'Core/Models/News.php';
 ?>
 <!DOCTYPE html>
 <html lang="ru-RU" xmlns="http://www.w3.org/1999/html">
@@ -29,6 +27,7 @@ require_once 'Core/Classes/DateBaseFunctions.php';
         <h2>Новости</h2>
         <ul class="databaselist">
             <?php
+            error_reporting(E_ALL);
             $page = 1;
 
             if (isset($_POST["page"])) {
@@ -70,9 +69,9 @@ require_once 'Core/Classes/DateBaseFunctions.php';
             setcookie("kuki", $lang);
 
             //вывод базы данных
-            $DB = new DateBaseFunctions();
+            $DB = new News();
             $listOfNews = $DB->getNewsByDate($page, $lang);
-
+            /*print_r($listOfNews);*/
             if ($listOfNews == null) {
                 echo "Тут пока что пусто";
             }

@@ -40,3 +40,17 @@ CREATE TABLE IF NOT EXISTS `news`.`suggestnews` (
 COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 ;
+
+SELECT news_translate.id,news_translate.title,news_translate.content,news_translate.language_id 
+FROM news_translate 
+INNER JOIN news 
+ON news.id = news_translate.id 
+WHERE news_translate.language_id = 1 
+ORDER BY `date` ASC LIMIT 4 OFFSET 0;
+
+SELECT * 
+FROM news
+INNER JOIN news_translate 
+ON news.id = news_translate.id 
+WHERE news_translate.language_id = 2 
+ORDER BY `date` ASC LIMIT 4 OFFSET 0;

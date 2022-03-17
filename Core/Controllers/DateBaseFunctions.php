@@ -1,7 +1,5 @@
 <?php
 
-namespace Core\DateString;
-
 use News;
 
 require "./news.php";

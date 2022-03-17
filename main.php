@@ -44,13 +44,13 @@ spl_autoload_register();
             if($time != "" && $str1 != "" && $str2 != "")
             {
                 echo "<h2>Ответ: </h2>";
-                $strClass = new Core\DateString\StringClass($str1);
+                $strClass = new Core\Controllers\StringClass\StringClass($str1);
                 $strClass->printStr();
                 echo "Длинна строки: " . $strClass->strLength() . "<br>";
                 $strClass->addStr($str2);
                 echo "Объединим имя и фамилию: " . $strClass->getText() . "<br>";
                 echo "Дата рождения: ";
-                Core\DateString\DateClass::getDate($time);
+                Core\Controllers\DateString\DateClass::getDate($time);
                 $strClass->clearStr();
             }
 
