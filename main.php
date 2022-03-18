@@ -1,6 +1,3 @@
-<?php
-spl_autoload_register();
-?>
 <!DOCTYPE html>
 <html lang="ru-RU">
 <head>

@@ -1,8 +1,3 @@
-<?php
-/*spl_autoload_register();*/
-
-require_once 'Core/Models/News.php';
-?>
 <!DOCTYPE html>
 <html lang="ru-RU" xmlns="http://www.w3.org/1999/html">
 <head>
@@ -69,8 +64,8 @@ require_once 'Core/Models/News.php';
             setcookie("kuki", $lang);
 
             //вывод базы данных
-            $DB = new News();
-            $listOfNews = $DB->getNewsByDate($page, $lang);
+            $DB = new \Core\Controllers\NewsController();
+            $listOfNews = $DB->getNews($page, $lang);
             /*print_r($listOfNews);*/
             if ($listOfNews == null) {
                 echo "Тут пока что пусто";
@@ -122,7 +117,7 @@ require_once 'Core/Models/News.php';
         $str2 = htmlspecialchars($_POST["_title"]);
 
         if ($date != "" && $str1 != "" && $str2 != "") {
-            $DB->insertDataToDB($str2, $str1, $date, $_COOKIE["kuki"]);
+            $DB->insertDataToNews($str2, $str1, $date, $_COOKIE["kuki"]);
             header('Refresh:0; url=news.php');
         }
     }

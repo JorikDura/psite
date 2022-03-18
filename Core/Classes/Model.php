@@ -1,6 +1,6 @@
 <?php
 
-$rqs = require 'config.php';
+namespace Core\Classes;
 
 abstract class Model
 {
@@ -10,13 +10,13 @@ abstract class Model
 
     protected $columns;
 
-    private $query;
+    public $query;
 
     public function __construct()
     {
-        global $rqs;
+        $rqs = require 'config.php';
         //подключаемся к sql
-        $this->connection = new mysqli($rqs['servername'], $rqs['username'], $rqs['password']);
+        $this->connection = new \mysqli($rqs['servername'], $rqs['username'], $rqs['password']);
 
         if ($this->connection->connect_error) {
             echo("Ошибка подключения");
@@ -25,13 +25,13 @@ abstract class Model
         $this->connection->connect($rqs['servername'], $rqs['username'], $rqs['password'], $rqs['dbName']);
     }
 
-    public function select($table, ...$params)
+    public function select(...$columns)
     {
-        if (!count($params) > 0) {
+        if (!count($columns) > 0) {
             return;
         }
 
-        $this->columns = implode(",", $params);
+        $this->columns = implode(",", $columns);
 
         $this->query = "SELECT {$this->columns} FROM {$this->table}";
 
@@ -40,7 +40,7 @@ abstract class Model
         return $this->query;
     }
 
-    public function insertDataToDB(string $DataBase, string $table, ...$columns)
+    public function insert(string $dataBase, string $table, ...$columns)
     {
         if (!count($columns) > 0) {
             return;
@@ -48,21 +48,26 @@ abstract class Model
 
         $this->columns = implode(",", $columns);
 
-        $this->query = "INSERT INTO {$DataBase}.{$table} ($columns) VALUES";
+        $this->query = "INSERT INTO {$dataBase}.{$table} ($this->columns) VALUES";
 
         $this->columns = "";
 
         return $this->query;
     }
 
-    public function run()
+    public function run($query)
     {
-        $this->connection->query($this->query);
+        return $this->connection->query($query);
     }
 
-    public function runAssoc() :array
+    public function get($query): array
     {
-        return mysqli_fetch_all($this->connection->query($this->query), MYSQLI_ASSOC);
+        return mysqli_fetch_all($this->connection->query($query), MYSQLI_ASSOC);
+    }
+
+    public function maxIDTable($table)
+    {
+        return $this->run("SELECT MAX(id) as id FROM {$table}");
     }
 
     public function clear()
