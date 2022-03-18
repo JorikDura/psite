@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Controllers\DateString;
+namespace Core\Controllers;
 
 class DateClass
 {

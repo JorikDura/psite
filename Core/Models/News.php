@@ -7,4 +7,12 @@ require "Core/Classes/Model.php";
 class News extends \Core\Classes\Model
 {
     public $table = 'news';
+
+    public $innerTable = "news_translate";
+
+    public $newsID = "news.id";
+
+    public $newsTransID = "news_translate.news_id";
+
+    public $newsTransLangID = "news_translate.language_id";
 }

@@ -1,18 +1,9 @@
 <?php
 namespace Core\Controllers;
-require "Core/Models/News.php";
 
 class NewsController
 {
     protected $news;
-
-    protected $innerTable = "news_translate";
-
-    protected $newsID = "news.id";
-
-    protected $newsTransID = "news_translate.news_id";
-
-    protected $newsTransLangID = "news_translate.language_id";
 
     public function __construct()
     {
@@ -23,7 +14,7 @@ class NewsController
     {
         $query = $this->news->select("*");
 
-        $query = $query . " INNER JOIN {$this->innerTable} ON {$this->newsID} = {$this->newsTransID} WHERE {$this->newsTransLangID} = {$langID}";
+        $query = $query . " INNER JOIN {$this->news->innerTable} ON {$this->news->newsID} = {$this->news->newsTransID} WHERE {$this->news->newsTransLangID} = {$langID}";
 
         $this->news->query = $query;
     }
@@ -56,7 +47,7 @@ class NewsController
         $this->news->clear();
     }
 
-    function getNews(int $page = 1, int $locale): array
+    function getNews(int $locale, int $page = 1): array
     {
         $pageSet = ($page - 1) * 4;
 
