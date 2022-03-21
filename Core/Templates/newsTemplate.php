@@ -1,4 +1,7 @@
-<div class="clearfix">
+<?php
+
+include "layout/header.php" ?>
+    <div class="clearfix">
     <div class="box">
         <h2>Новости</h2>
         <ul class="databaselist">
@@ -21,7 +24,7 @@
             <input type="text" id="_text" name="_text" placeholder="Введите текст..."><br>
             <label for="time">Введите дату новости: </label><br>
             <input type="date" id="_date" name="_date" placeholder="Ваша дата..."><br>
-            <input disabled type="submit" value="Отправить">
+            <input type="submit" value="Отправить">
         </form>
         <h2>Выбрать язык</h2>
         <form action="" method="post" target="_self">
@@ -30,3 +33,5 @@
         </form>
     </div>
     <br>
+<?php
+include "layout/footer.php" ?>

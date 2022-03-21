@@ -4,7 +4,7 @@ namespace Core\Controllers;
 
 class StringClass
 {
-    private $text;
+    public $text;
 
     /**
      * @param string $text
@@ -14,28 +14,23 @@ class StringClass
     {
         $this->text = $text;
     }
-    public function strLength()
+
+    public function strLength(): int
     {
         return mb_strlen($this->text);
     }
+
     public function addStr(string $newText)
     {
         $this->text .= $newText;
     }
+
     public function clearStr()
     {
         $this->text = "";
-        echo "Строка была очищена." . "<br>";
     }
-    public function rewriteStr(string $newText)
-    {
-        $this->text = $newText;
-    }
-    public function printStr()
-    {
-        echo "Строка: " . $this->text . "<br>";
-    }
-    public function getText()
+
+    public function getText(): string
     {
         return $this->text;
     }

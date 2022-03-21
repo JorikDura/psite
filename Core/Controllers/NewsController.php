@@ -1,4 +1,5 @@
 <?php
+
 namespace Core\Controllers;
 
 class NewsController
@@ -38,7 +39,14 @@ class NewsController
             $newsID = $count["id"];
         }
 
-        $query = $this->news->insert($this->news->table, "news_translate", "news_id", "title", "content", "language_id");
+        $query = $this->news->insert(
+            $this->news->table,
+            "news_translate",
+            "news_id",
+            "title",
+            "content",
+            "language_id"
+        );
 
         $this->news->query = $query . " ('{$newsID}', '{$str1}', '{$str2}', '{$locale}');";
 

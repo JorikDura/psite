@@ -7,15 +7,12 @@
     <meta name="keyword" content="php">
     <meta name="description" content="AwA">
     <title>nst php ver 0.14871</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../../../styles.css">
 </head>
 <body>
 <!-- Меню -->
 <ul class="sidenav">
     <li><a href="/">Формы</a></li>
-    <li><a href="news">Новости</a></li>
+    <li><a href="/news">Новости</a></li>
     <li style="float: right;"><a href="#about">About</a></li>
 </ul>
-<?= $siteContent ?>
-</body>
-</html

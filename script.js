@@ -1,18 +1,21 @@
-const text = document.querySelectorAll('input');
-button = text[5];
-text[2].addEventListener("change", myButton);
-text[3].addEventListener("change", myButton);
-text[4].addEventListener("change", myButton);
+let text = document.querySelectorAll('input:not(input[type=submit])');
+let button = document.querySelectorAll('input[type=submit]');
+
 /*console.log(text);*/
 
-function myButton()
+function myButton() {
+    for (let i = 0; i < text.length; i++)
+    {
+        if(text[i].value == "")
+        {
+            button.disabled = true;
+            return;
+        }
+    }
+    button.disabled = false;
+}
+
+for(let i = 0; i < text.length; i++)
 {
-    if(text[2].value != "" && text[3].value != "" && text[4].value != "")
-    {
-        button.disabled = false;
-    }
-    else
-    {
-        button.disabled = true;
-    }
+    text[i].addEventListener("change", myButton);
 }

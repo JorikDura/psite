@@ -6,9 +6,10 @@ class DateClass
 {
     /**
      * @param $date
+     * @return string
      */
 
-    public static function getDate($date)
+    public static function getDate($date) : string
     {
         $monthsArray = array(
             "01" => "января",
@@ -26,6 +27,6 @@ class DateClass
         );
         $month = date('m',strtotime($date));
         $date = strtotime($date);
-        echo date('d ', $date) . $monthsArray[$month] . date(' Y', $date) . "<br>";
+        return date('d ', $date) . $monthsArray[$month] . date(' Y', $date) . "<br>";
     }
 }

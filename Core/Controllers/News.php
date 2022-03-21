@@ -3,7 +3,9 @@
 namespace Core\Controllers;
 
 use Core\Controllers\NewsController;
+
 require_once("Core\Controllers\Render.php");
+
 use function \Core\Controllers\render;
 
 class News
@@ -62,13 +64,15 @@ class News
 
             if ($date != "" && $str1 != "" && $str2 != "") {
                 $DB->insertDataToNews($str2, $str1, $date, $_COOKIE["kuki"]);
-                header('Refresh:0; url=news.php');
+                header('Refresh:0; url=/news');
+            } else {
+                echo "Ты ничего не ввел, шамок.";
             }
         }
 
         echo render(
-            "././Core/Templates/layout.php",
-            ['siteContent' => render("././Core/Templates/newsTemplate.php", ['news' => $loadedNews, 'page' => $page])]
+            "newsTemplate.php",
+            ['news' => $loadedNews, 'page' => $page]
         );
     }
 }
