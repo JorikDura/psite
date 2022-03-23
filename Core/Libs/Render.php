@@ -1,7 +1,5 @@
 <?php
 
-namespace Core\Controllers;
-
 function render($tmpl, array $params = []): string
 {
     ob_start();

@@ -4,10 +4,6 @@ namespace Core\Controllers;
 
 use Core\Controllers\NewsController;
 
-require_once("Core\Controllers\Render.php");
-
-use function \Core\Controllers\render;
-
 class News
 {
     public static function getNews()

@@ -14,5 +14,7 @@
 <ul class="sidenav">
     <li><a href="/">Формы</a></li>
     <li><a href="/news">Новости</a></li>
+    <li><a href="/reg">Регистрация</a></li>
+    <li><a href="/auth">Авторизация</a></li>
     <li style="float: right;"><a href="#about">About</a></li>
 </ul>

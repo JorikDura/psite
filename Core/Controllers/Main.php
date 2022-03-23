@@ -5,10 +5,6 @@ namespace Core\Controllers;
 use Core\Controllers\StringClass;
 use Core\Controllers\DateClass;
 
-require_once("Core\Controllers\Render.php");
-
-use function \Core\Controllers\render;
-
 class Main
 {
     public static function insertMain()
