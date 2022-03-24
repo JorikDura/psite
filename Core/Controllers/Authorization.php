@@ -10,17 +10,27 @@ class Authorization
     public static function Authorization()
     {
         $authResponse = "";
-        if (isset($_POST['login']) && isset($_POST['password'])) {
-            $login = htmlspecialchars($_POST['login']);
-            $password = htmlspecialchars($_POST['password']);
+        $DB = new signsController();
 
-            if ($login != "" && $password != "") {
-                $authResponse = "<h2>Ответ:</h2><p>Вы ввели: </p>" . $login . "<br> <p>Так же: </p>" . $password;
-            } else {
-                echo "Вы ничего не ввели!";
+        if (!isset($_SESSION['auth'])) {
+            if (isset($_POST['login']) && isset($_POST['password'])) {
+                $login = htmlspecialchars($_POST['login']);
+                $password = htmlspecialchars($_POST['password']);
+
+                if (!empty($login) && !empty($password)) {
+                    if ($DB->login($login, $password)) {
+                        $authResponse = "Вы вошли.";
+                    } else {
+                        $authResponse = "Неверный логин или пароль.";
+                    }
+                } else {
+                    echo "Вы ничего не ввели!";
+                }
             }
+            echo render("AuthorizationTemplate.php", ["authResponse" => $authResponse]);
+        } else {
+            $authResponse = "Вы залогинены.";
+            echo render("AuthComplite.php", ["authResponse" => $authResponse]);
         }
-
-        echo render("AuthorizationTemplate.php", ["authResponse" => $authResponse]);
     }
 }

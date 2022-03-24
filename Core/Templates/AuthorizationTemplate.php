@@ -14,7 +14,7 @@ include "layout/header.php" ?>
             </form>
         </div>
         <div class="box">
-            <?= $authResponse ?>
+            <p><?= $authResponse ?></p>
         </div>
     </div>
 

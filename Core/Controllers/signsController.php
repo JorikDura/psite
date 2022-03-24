@@ -24,6 +24,33 @@ class signsController
 
         $this->signs->run($this->signs->query);
 
+        var_dump($this->signs->query);
+
         $this->signs->clear();
+    }
+
+    function selectSigns($login, $password): bool
+    {
+        $this->signs->query = $this->signs->select("*");
+        $this->signs->query .= " WHERE {$this->signs->signsLogin} = '{$login}';";
+        $arr = $this->signs->get($this->signs->query);
+        $hash = $arr[0]['password'];
+        $this->signs->clear();
+
+        if (password_verify($password, $hash)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function login($login, $password): bool
+    {
+        if ($this->selectSigns($login, $password)) {
+            $_SESSION["auth"] = true;
+            return true;
+        } else {
+            return false;
+        }
     }
 }

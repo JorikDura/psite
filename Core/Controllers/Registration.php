@@ -9,7 +9,7 @@ class Registration
 {
     public static function Registration()
     {
-        $registResponse = "<h2>Ответ</h2>";
+        $registResponse = "";
         if (isset($_POST['regLogin']) && isset($_POST['regPassword'])) {
             $login = htmlspecialchars($_POST['regLogin']);
             $password = htmlspecialchars($_POST['regPassword']);
@@ -20,15 +20,15 @@ class Registration
 
                 try {
                     $DB->insertDataToSigns($login, $password);
-                    $registResponse .= "<p>Вы успешно зарегались</p>";
+                    $registResponse .= "Вы успешно зарегались";
                 }
                 catch (\Exception $exception)
                 {
-                    $registResponse .= "<p>Чет не получилось...</p><br>" . $exception . "<br><p>Возможно такой логин уже существует.</p>";
+                    $registResponse .= "Возможно такой логин уже существует: " . $exception->getMessage();
                 }
 
             } else {
-                echo "Вы ничего не ввели!";
+                $registResponse = "Вы ничего не ввели!";
             }
         }
 

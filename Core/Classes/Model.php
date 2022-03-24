@@ -6,6 +6,8 @@ abstract class Model
 {
     protected $connection;
 
+    protected $DBName;
+
     protected $table;
 
     protected $columns;
@@ -33,7 +35,7 @@ abstract class Model
 
         $this->columns = implode(",", $columns);
 
-        $this->query = "SELECT {$this->columns} FROM {$this->table}";
+        $this->query = "SELECT {$this->columns} FROM {$this->DBName}.{$this->table}";
 
         $this->columns = "";
 
@@ -72,8 +74,8 @@ abstract class Model
 
     public function clear()
     {
-        $this->columns = "";
+        $this->columns = null;
 
-        $this->query = "";
+        $this->query = null;
     }
 }

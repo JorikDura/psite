@@ -8,7 +8,6 @@ class News
 {
     public static function getNews()
     {
-        error_reporting(E_ALL);
         $page = 1;
 
         if (isset($_POST["page"])) {

@@ -8,7 +8,7 @@ class Signs extends Model
 {
     public $DBName = "authorization";
 
-    public $table = "signs";
+    public $table= "signs";
 
     public $signsLogin = "login";
 

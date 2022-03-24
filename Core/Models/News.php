@@ -8,6 +8,8 @@ use Core\Classes\Model;
 
 class News extends Model
 {
+    public $DBName = 'news';
+
     public $table = 'news';
 
     public $innerTable = "news_translate";

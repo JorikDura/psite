@@ -14,7 +14,7 @@ include "layout/header.php" ?>
             </form>
         </div>
         <div class="box">
-            <?= $registResponse ?>
+            <p><?= $registResponse ?></p>
         </div>
     </div>
 
